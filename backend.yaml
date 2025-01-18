@@ -2,7 +2,7 @@
   hosts: backend
   become: yes
   vars:
-    mysql_root_password: Chennai@2027@!
+    mysql_root_password: Chennai@2027!
     login_host: mysql.ashu.shop
   tasks:
   - name: disable default nodejs
