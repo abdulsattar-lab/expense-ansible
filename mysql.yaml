@@ -2,9 +2,14 @@
   hosts: mysql
   become: yes
   vars:
-    mysql_root_password: ExpenseApp@1
+    mysql_root_password: Chennai@2027!
     login_host: mysql.ashu.shop
   tasks:
+  - name: ansible to install pymysql
+    ansible.builtin.pip:
+      name:
+      - PyMySQL
+      executable: pip3.9
   - name: install MySQL Server
     ansible.builtin.package:
       name: mysql-server
@@ -27,3 +32,7 @@
   - name: print mysql info
     ansible.builtin.debug:
       msg: "{{ mysql_info }}"
+
+  - name: setup MySQL root password
+    ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ mysql_root_password }}"
+    when: mysql_info.failed is true
